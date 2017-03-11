@@ -31,6 +31,7 @@ const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);
     routing
   ],
   providers: [
+      appRoutingProviders,
       GitHubService
   ],
   bootstrap: [AppComponent]

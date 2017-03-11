@@ -4,6 +4,7 @@ import { Http, RequestOptions, Headers } from '@angular/http';
 import { GitHubService } from './github.service';
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import { Observable } from 'rxjs/observable';
+import { Applicant } from './applicant.model';
 
 @Component({
   selector: 'home',
@@ -11,15 +12,9 @@ import { Observable } from 'rxjs/observable';
   styleUrls: ['./app.component.css']
 })
 export class HomeComponent {
-  
+
   title = 'app works!';
-  applicant: {
-      firstName: string;
-      lastName: string;
-      emailAddress: string;
-      gitHubAccount: string;
-      resume: File;
-  } = { firstName: "",
+  applicant: Applicant = { firstName: "",
         lastName: "",
         emailAddress: "",
         gitHubAccount: "",
