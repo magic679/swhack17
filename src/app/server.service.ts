@@ -15,7 +15,7 @@ export class GitHubService {
     console.log("Dynamo connection is functioning...");
   }
 
-  select(id: string) {
+  select(id: string): Observable<any> {
     let dynamoQueryObj = {
       "TableName": this.tableName,
       "Key": {
@@ -24,16 +24,20 @@ export class GitHubService {
         }
       }
     };
-    this.dynamo.getItem(dynamoQueryObj, (err, data) => {
-      if (err) {
-        console.log("Error: " + err);
-      } else {
-        console.log("Success: " + data);
-      }
+
+    return Observable.create(observer => {
+      this.dynamo.getItem(dynamoQueryObj, (err, data) => {
+        if (err) {
+          observer.next(err);
+        } else {
+          observer.next(data);
+        }
+        observer.complete();
+      });
     });
   }
 
-  insert(obj: any) {
+  insert(obj: any): Observable<any> {
     let dynamoInsertObj = {
       "TableName": this.tableName,
       "Item": {}
@@ -47,13 +51,17 @@ export class GitHubService {
       }
     });
 
-    this.dynamo.putItem(dynamoInsertObj, (err, data) => {
-      if (err) {
-        console.log("Error " + err);
-      } else {
-        console.log('Success: ' + data);
+    return Observable.create(observer => {
+        this.dynamo.putItem(dynamoInsertObj, (err, data) => {
+          if (err) {
+            observer.next(err);
+          } else {
+            observer.next(data);
+          }
+          observer.complete();
+        });
       }
-    });
+    );
   }
 
 }
