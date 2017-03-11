@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Http, RequestOptions, Observable } from '@angular/http';
 import { GitHubService } from './github.service';
+import { FileUploader, Headers} from 'ng2-file-upload/ng2-file-upload';
 
 
 @Component({
@@ -22,7 +24,8 @@ export class AppComponent {
         gitHubAccount: "",
         resume: null
         };
-  constructor(private github: GitHubService){
+  apiEndPoint = 'SERVER_URL';
+  constructor(private github: GitHubService, private http: Http){
       console.log("App Component is functioning")
   }
   testing() {
@@ -39,4 +42,17 @@ export class AppComponent {
       this.applicant.resume = JSON.stringify(this.applicant.resume);
       console.log("You entered", this.applicant.resume);
   }
+  fileChange(event: any) {
+    let fileList: FileList = event.target.files;
+    if(fileList.length > 0) {
+        let file: File = fileList[0];
+        let formData:FormData = new FormData();
+        formData.append('uploadFile', file, file.name);
+        let headers = new Headers();
+        headers.append('Content-Type', 'multipart/form-data');
+        headers.append('Accept', 'application/json');
+        let options = new RequestOptions(headers);
+        this.http.post(this.apiEndPoint, formData, options).map(res => res.json());
+    }
+}
 }
