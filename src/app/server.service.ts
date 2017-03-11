@@ -2,7 +2,6 @@ import {Component, Injectable} from '@angular/core';
 import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {Observable} from 'rxjs/Observable';
-import { Database, Cursor, Collection, Bulk } from 'mongojs';
 
 @Injectable()
 @Component({
@@ -14,6 +13,8 @@ export class GitHubService {
             console.log("MongoDB connection is functioning...");
     }
 
-    
+    fullQuery(){
+		return this.http.get(this.url).map(res => res.json());
+	}
 
 }
