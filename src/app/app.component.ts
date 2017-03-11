@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Http, RequestOptions, Observable } from '@angular/http';
+import { Http, RequestOptions } from '@angular/http';
 import { GitHubService } from './github.service';
-import { FileUploader, Headers} from 'ng2-file-upload/ng2-file-upload';
-
+import { FileUploader, Headers } from 'ng2-file-upload/ng2-file-upload';
+import { Observable } from 'rxjs/observable';
 
 @Component({
   selector: 'app-root',
