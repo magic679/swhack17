@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { Ng2UploaderModule } from 'ng2-uploader';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home.component';
@@ -29,10 +28,10 @@ const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);
     BrowserModule,
     FormsModule,
     HttpModule,
-    Ng2UploaderModule,
     routing
   ],
   providers: [
+      appRoutingProviders,
       GitHubService
   ],
   bootstrap: [AppComponent]

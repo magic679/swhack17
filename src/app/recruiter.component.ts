@@ -4,6 +4,7 @@ import { Http, RequestOptions, Headers } from '@angular/http';
 import { GitHubService } from './github.service';
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import { Observable } from 'rxjs/observable';
+import { Applicant } from './applicant.model';
 
 @Component({
   selector: 'recruiter',
@@ -12,21 +13,12 @@ import { Observable } from 'rxjs/observable';
 })
 export class RecruiterComponent {
   title = 'app works!';
-  applicant: {
-      firstName: string;
-      lastName: string;
-      emailAddress: string;
-      gitHubAccount: string;
-      resume: File;
-  } = { firstName: "",
-        lastName: "",
-        emailAddress: "",
-        gitHubAccount: "",
-        resume: null
-        };
   apiEndPoint = 'SERVER_URL';
-  constructor(private github: GitHubService, private http: Http){
-      console.log("App Component is functioning")
+  applicantList: Array<Applicant> = [];
+  constructor(private githubService: GitHubService){
+      console.log("App Component is functioning");
   }
-  
+  entry(){
+      this.applicantList.push(this.githubService.entry());
+  }
 }

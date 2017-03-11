@@ -2,6 +2,7 @@ import {Component, Injectable} from '@angular/core';
 import {Http, Headers} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {Observable} from 'rxjs/Observable';
+import { Applicant } from './applicant.model';
 
 @Injectable()
 @Component({
@@ -18,6 +19,12 @@ export class GitHubService {
 		system: "",
 		target: ""
 	};
+	applicant: Applicant = { firstName: "",
+          lastName: "",
+          emailAddress: "",
+          gitHubAccount: "",
+          resume: null
+          };
 
 	constructor(private http: Http) {
             console.log("GitHub Service is running");
@@ -32,6 +39,13 @@ export class GitHubService {
     userURLCreation(name: string): string{
         var userUrl = this.url + 'users/' + name;
         return userUrl;
+    }
+	entry(){
+        this.applicant.firstName = "Austin";
+        this.applicant.lastName = "Michne";
+        this.applicant.emailAddress = "Austinmichne@gmail.com";
+        this.applicant.gitHubAccount = "amichne";
+        return this.applicant;
     }
 
 }
