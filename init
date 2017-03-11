@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ $1 = "start" ]
+then
+	npm start > pid
+elif [ $2 = "stop" ]
+then
+	kill -9 $(cat pid)
+fi
