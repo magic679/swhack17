@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "angular-cli": {},
+  "authors": "Stefano Chang, Jared Rounsav, Austin Michne, David Hu",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
