@@ -25,7 +25,7 @@ export class HomeComponent {
       console.log("App Component is functioning")
   }
   testing() {
-      this.github.queryTest().subscribe(data => {
+      this.github.retrieveAllEvents('amichne').subscribe(data => {
           if (data){
               console.log(data);
           }
