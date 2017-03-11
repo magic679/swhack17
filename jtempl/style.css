@@ -1,0 +1,43 @@
+body {
+  font-family: "Verdana", sans-serif;
+}
+h1 {
+  color: white;
+}
+#dashboard {
+  background: #565656;
+  min-height: 100%;
+}
+.top {
+  height: 25%;
+}
+.bottom {
+  height: 75%;
+}
+.component {
+  background: white;
+  margin: 5px;
+
+}
+.attributes {
+  height: 100%;
+}
+.graph {
+  height: 100%;
+  margin-left: 40px;
+  margin-right: 15px;
+}
+.graph-type {
+  width: 150px;
+  height: 100%;
+}
+
+.user-selector {
+  overflow: scroll;
+}
+
+.component-title {
+    font-size: 1.2em;
+    padding: 10px;
+}
+
