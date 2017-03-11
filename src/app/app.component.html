@@ -39,19 +39,19 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   <form #f="ngForm" (ngSubmit)="onSubmit(f.value)" style="text-align:center">
     <table style="width:100%;">
         <tr>
-            <h3> First Name  <input type="text" name="firstName" id='firstName' [(ngModel)]="applicant.firstName"></h3>
+            <h3> First Name  <input type="text" name="firstName" id='firstName' [(ngModel)]="applicant.firstName" required></h3>
         </tr>
         <tr>
-            <h3> Last Name  <input type="text" name="lastName" id='lastName' [(ngModel)]="applicant.lastName"></h3>
+            <h3> Last Name  <input type="text" name="lastName" id='lastName' [(ngModel)]="applicant.lastName" required></h3>
         </tr>
         <tr>
-            <h3> Email Address  <input type="text" name="emailAddress" id='emailAddress' [(ngModel)]="applicant.emailAddress"></h3>
+            <h3> Email Address  <input type="text" name="emailAddress" id='emailAddress' [(ngModel)]="applicant.emailAddress" required></h3>
         </tr>
         <tr>
-            <h3> GitHub Account  <input type="text" name="gitHubAccount" id='gitHubAccount' [(ngModel)]="applicant.gitHubAccount"></h3>
+            <h3> GitHub Account  <input type="text" name="gitHubAccount" id='gitHubAccount' [(ngModel)]="applicant.gitHubAccount" required></h3>
         </tr>
         <tr>
-            <h3> Upload Resume  <input type="file" accept="application/pdf" name="resumeUpload" id='resumeUpload' ngModel></h3>
+            <h3> Upload Resume  <input type="file" accept="application/pdf" name="resumeUpload" id='resumeUpload' [(ngModel)]="applicant.resume"></h3>
         </tr>
         <tr>
             <h3><button type="submit">Submit</button></h3>

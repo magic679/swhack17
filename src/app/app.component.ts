@@ -36,6 +36,7 @@ export class AppComponent {
       })
   }
   onSubmit(){
-      console.log("You entered", this.applicant.firstName);
+      this.applicant.resume = JSON.stringify(this.applicant.resume);
+      console.log("You entered", this.applicant.resume);
   }
 }
