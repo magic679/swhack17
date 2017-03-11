@@ -69,9 +69,9 @@ window.recruiterGraphs = {
 
         svg.selectAll('rect').data(original.built).enter().append('rect')
             .attr('x', function(d,i){  return i * (original.home.width / original.built.length);})
-            .attr('y', function(d) {return original.home.height -(d[Object.keys(d)[0]]*10)})
+            .attr('y', function(d) {return original.home.height -((d[Object.keys(d)[0]]*10)+1)})
             .attr('width', original.home.width / original.built.length - 3)
-            .attr('height', function(d){return d[Object.keys(d)[0]]*10})
+            .attr('height', function(d){var out = ((d[Object.keys(d)[0]]*10)+1); return out})
             .attr('fill', "#666");
     },
     generatePie: function (atts, built) {
