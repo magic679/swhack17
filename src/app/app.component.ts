@@ -17,7 +17,7 @@ export class AppComponent {
       lastName: string;
       emailAddress: string;
       gitHubAccount: string;
-      resume: Object;
+      resume: File;
   } = { firstName: "",
         lastName: "",
         emailAddress: "",
@@ -39,7 +39,6 @@ export class AppComponent {
       })
   }
   onSubmit(){
-      this.applicant.resume = JSON.stringify(this.applicant.resume);
       console.log("You entered", this.applicant.resume);
   }
   fileChange(event: any) {
