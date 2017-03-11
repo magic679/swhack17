@@ -2,7 +2,7 @@
 
 if [ $1 = "start" ]
 then
-	npm start > pid
+	ng serve --host 0.0.0.0 > pid
 elif [ $2 = "stop" ]
 then
 	kill -9 $(cat pid)
