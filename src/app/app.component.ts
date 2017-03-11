@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import {GitHubService} from './github.service';
+import { FormsModule } from '@angular/forms';
+import { GitHubService } from './github.service';
+
 
 @Component({
   selector: 'app-root',
@@ -8,6 +10,18 @@ import {GitHubService} from './github.service';
 })
 export class AppComponent {
   title = 'app works!';
+  applicant: {
+      firstName: string;
+      lastName: string;
+      emailAddress: string;
+      gitHubAccount: string;
+      resume: Object;
+  } = { firstName: "",
+        lastName: "",
+        emailAddress: "",
+        gitHubAccount: "",
+        resume: null
+        };
   constructor(private github: GitHubService){
       console.log("App Component is functioning")
   }
@@ -20,5 +34,8 @@ export class AppComponent {
               console.log("Something isn't working");
           }
       })
+  }
+  onSubmit(){
+      console.log("You entered", this.applicant.firstName);
   }
 }
