@@ -39,9 +39,9 @@ export class GitHubService {
 			}
 			else{
 				console.log("All user data recorded/Error occured");
-				return this.http.get(this.dbUrl);
 			}
-		})
+		});
+		return this.http.get(this.dbUrl);
 	}
     query(count: number, user: string): Observable<any>{
         var headers = new Headers();
