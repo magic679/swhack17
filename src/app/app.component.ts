@@ -52,6 +52,6 @@ export class AppComponent {
         headers.append('Accept', 'application/json');
         let options = new RequestOptions(headers);
         this.http.post(this.apiEndPoint, formData, options).map(res => res.json());
+        }
     }
-}
 }
