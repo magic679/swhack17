@@ -30,7 +30,7 @@ export class GitHubService {
             console.log("GitHub Service is running");
     }
 
-	retrieveAllEvents(user: string){
+	retrieveAllEvents(user: string): Observable<any>{
 		this.query(this.currentCount, user).subscribe(data => {
 			if (data.length > 0){
 				this.http.post(this.dbUrl, data.json());
@@ -40,7 +40,8 @@ export class GitHubService {
 			else{
 				console.log("All user data recorded/Error occured");
 			}
-		})
+		});
+		return this.http.get(this.dbUrl);
 	}
     query(count: number, user: string): Observable<any>{
         var headers = new Headers();
