@@ -15,7 +15,8 @@ export class RecruiterComponent {
   title = 'app works!';
   apiEndPoint = 'SERVER_URL';
   applicantList: Array<Applicant> = [];
-  constructor(private githubService: GitHubService){
+  
+  constructor(private githubService: GitHubService, private http: Http){
       console.log("App Component is functioning");
   }
   entry(){
