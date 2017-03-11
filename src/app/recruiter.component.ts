@@ -8,7 +8,7 @@ import { Applicant } from './applicant.model';
 
 @Component({
   selector: 'recruiter',
-  templateUrl: './recruiter.component.html',
+  templateUrl: './admin-home.html',
   styleUrls: ['./app.component.css']
 })
 export class RecruiterComponent {
