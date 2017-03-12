@@ -1,19 +1,20 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, ModuleWithProviders } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule, ModuleWithProviders} from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {HttpModule} from '@angular/http';
 
-import { AppComponent } from './app.component';
-import { HomeComponent } from './home.component';
-import { RecruiterComponent } from './recruiter.component';
+import {AppComponent} from './app.component';
+import {HomeComponent} from './home.component';
+import {RecruiterComponent} from './recruiter.component';
 
-import { GitHubService } from './github.service';
+import {GitHubService} from './github.service';
+import {DataStoreService} from './dataStore.service';
 
 import {Routes, RouterModule} from '@angular/router';
 
 const appRoutes: Routes = [
-    { path: '', component: HomeComponent },
-    { path: 'recruiter', component: RecruiterComponent }
+  {path: '', component: HomeComponent},
+  {path: 'recruiter', component: RecruiterComponent}
 ]
 const appRoutingProviders: any[] = [];
 const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);
@@ -31,9 +32,11 @@ const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);
     routing
   ],
   providers: [
-      appRoutingProviders,
-      GitHubService
+    appRoutingProviders,
+    GitHubService,
+    DataStoreService
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
