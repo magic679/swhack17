@@ -88,9 +88,102 @@ window.recruiterGraphs = {
             .attr('height', function(d){var out = ((d[Object.keys(d)[0]]*10)+1); return out})
             .attr('fill', "#666");
     },
-    generatePie: function (atts, built) {
+    /**
+     * Pipe bulk data to be processed
+     * @param json
+     * @param label
+     * @param value
+     */
+    pieData: function(json, label, value){
+        var data = [];
+        json.forEach(function(item){
+            var obj = {};
+            obj[label]= item[label];
+            obj[value]= item[value];
+            data.push(obj)
+        });
+        // return data;
+        this.generatePie(data);
     },
-    generateScatter: function (atts, built) {
+    /**
+     * Generate a pie chart
+     * @param data Array of Objects
+     */
+    generatePie: function (data) {
+
+        var w = this.home.width;
+        var h = this.home.height;
+        var r = Math.min(w, h)/2;
+
+        var color = d3.scaleOrdinal(d3.schemeCategory20c);
+
+
+        var svg = d3.select(this.home.target)
+            .append("svg")
+            .attr("width", w)
+            .attr("height", h)
+            .append("g")
+            .attr('transform', 'translate(' + (w / 2) +  ',' + (h / 2) + ')');
+
+        var arc = d3.arc()
+            .innerRadius(0)
+            .outerRadius(r);
+
+        var pie = d3.pie().value(function(d){return d.size;}).sort(null);
+
+        var path = svg.selectAll('path')
+            .data(pie(data))
+            .enter()
+            .append('path')
+            .attr('d', arc)
+            .attr('fill', function(d) {
+                return color(d.data.name);
+            });
+    },
+    scatterData: function(json, val1, val2){
+        var arr = [];
+        json.forEach(function(item){
+            Object.byString = function(o, s) {
+                s = s.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
+                s = s.replace(/^\./, '');           // strip a leading dot
+                var a = s.split('.');
+                for (var i = 0, n = a.length; i < n; ++i) {
+                    var k = a[i];
+                    if (k in o) {
+                        o = o[k];
+                    } else {
+                        return;
+                    }
+                }
+                return o;
+            };
+
+            var nudate = new Date(item[val1]);
+
+
+            arr.push({date: nudate, value1: nudate, value2: Object.byString(item, val2)});
+
+            console.log(arr);
+        });
+        // console.log(json[val1], val1);
+    },
+    generateScatter: function (data) {
+
+        data = [{label: 12, value:10}];
+        var w = this.home.width;
+        var h = this.home.height;
+        var svg = d3.select('body').append('svg').attr('width', w).attr('height', h);
+
+        var dots = svg.selectAll("circle")
+            .data(data)
+            .enter()
+            .append("circle")
+            .attr('cx', function(d){return d.label*3})
+            .attr('cy', function(d){return h-d.value})
+            .attr('r', function(d){return 5})
+            .attr('fill', '#666')
+
+
     },
     removeGraph: function (atts, built) {
     },
