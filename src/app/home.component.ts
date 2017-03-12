@@ -18,36 +18,29 @@ export class HomeComponent {
         lastName: "",
         emailAddress: "",
         gitHubAccount: "",
-        resume: null
+        gitHubResponse: [],
+        sortableStats: []
         };
+  responseData: Array<any> = [];
   apiEndPoint = 'SERVER_URL';
   constructor(private github: GitHubService, private http: Http){
       console.log("App Component is functioning")
   }
   testing() {
-      this.github.retrieveAllEvents('amichne').subscribe(data => {
+      let count = 0;
+      this.github.query(this.applicant.gitHubAccount, count).subscribe(data => {
           if (data){
-              console.log(data);
+              for (let d of data){
+                  this.applicant.gitHubResponse.push(d);
+              }
           }
-          else{
-              console.log("Something isn't working");
+          else {
+              console.log("ERROR");
           }
-      })
+      });
   }
+  
   onSubmit(){
-      console.log("You entered", this.applicant.resume);
   }
-  fileChange(event: any) {
-    let fileList: FileList = event.target.files;
-    if(fileList.length > 0) {
-        let file: File = fileList[0];
-        let formData:FormData = new FormData();
-        formData.append('uploadFile', file, file.name);
-        let headers = new Headers();
-        headers.append('Content-Type', 'multipart/form-data');
-        headers.append('Accept', 'application/json');
-        let options = new RequestOptions(headers);
-        this.http.post(this.apiEndPoint, formData, options).map(res => res.json());
-        }
-    }
+
 }

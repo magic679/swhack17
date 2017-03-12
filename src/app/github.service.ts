@@ -9,30 +9,12 @@ import { Applicant } from './applicant.model';
 })
 export class GitHubService {
 	url = 'https://api.github.com/';
-	currentCount = 0;
 	applicant = new Applicant;
 	listOfResponses: Array<any> = [];
 	constructor(private http: Http) {
             console.log("GitHub Service is running");
     }
-
-	retrieveAllEvents(user: string){
-		this.query(this.currentCount, user).subscribe(data => {
-			if (data.length > 0){
-				for (let d of data){
-					this.listOfResponses.push(d);
-				}
-				this.currentCount++;
-				this.retrieveAllEvents(user);
-			}
-			else{
-				console.log("All user data recorded/Error occured");
-				this.currentCount = 0;
-			}
-		});
-		return this.listOfResponses;
-	}
-    query(count: number, user: string): Observable<any>{
+    query(user: string, count: number): Observable<any>{
         var headers = new Headers();
         headers.append('Accept', 'application/vnd.github.cloak-preview');
         headers.append('Authorization', '2fe4824d7b435c10b52dbb755c1505d92473f2b4');

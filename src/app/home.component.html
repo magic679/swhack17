@@ -5,7 +5,7 @@
     <h1><b><i class="fa fa-dashboard"></i> Apply Below</b></h1>
   </header>
   <button (click)="testing()">Payload in console</button>
-  <form #f="ngForm" (ngSubmit)="onSubmit(f.value)" style="text-align:center">
+  <form #f="ngForm" (ngSubmit)="testing()" style="text-align:center">
     <table style="width:100%;">
         <tr>
             <h3> First Name  <input type="text" name="firstName" id='firstName' [(ngModel)]="applicant.firstName" required></h3>
@@ -18,9 +18,6 @@
         </tr>
         <tr>
             <h3> GitHub Account  <input type="text" name="gitHubAccount" id='gitHubAccount' [(ngModel)]="applicant.gitHubAccount" required></h3>
-        </tr>
-        <tr>
-            <h3> Upload Resume  <input type="file" accept="application/pdf" name="resumeUpload" id='resumeUpload' [(ngModel)]="applicant.resume"></h3>
         </tr>
         <tr>
             <h3><button type="submit">Submit</button></h3>
