@@ -9,39 +9,28 @@ import { Applicant } from './applicant.model';
 })
 export class GitHubService {
 	url = 'https://api.github.com/';
-	dbUrl = "https://um7sfkonal.execute-api.us-west-2.amazonaws.com/hack";
-	QueryParam: {
-		code: string,
-		system: string,
-		target: string
-	} = {
-		code: "",
-		system: "",
-		target: ""
-	};
-	applicant: Applicant = { firstName: "",
-          lastName: "",
-          emailAddress: "",
-          gitHubAccount: "",
-          resume: null
-          };
 	currentCount = 0;
+	applicant = new Applicant;
+	listOfResponses: Array<any> = [];
 	constructor(private http: Http) {
             console.log("GitHub Service is running");
     }
 
-	retrieveAllEvents(user: string): Observable<any>{
+	retrieveAllEvents(user: string){
 		this.query(this.currentCount, user).subscribe(data => {
 			if (data.length > 0){
-				this.http.post(this.dbUrl, data.json());
+				for (let d of data){
+					this.listOfResponses.push(d);
+				}
 				this.currentCount++;
 				this.retrieveAllEvents(user);
 			}
 			else{
 				console.log("All user data recorded/Error occured");
+				this.currentCount = 0;
 			}
 		});
-		return this.http.get(this.dbUrl);
+		return this.listOfResponses;
 	}
     query(count: number, user: string): Observable<any>{
         var headers = new Headers();
