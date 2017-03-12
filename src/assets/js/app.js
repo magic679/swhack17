@@ -1,4 +1,4 @@
-(function () {
-  console.log('jquery');
-  console.log(applicantList);
-})();
+var hack = function(){
+    console.log('in jquery');
+    console.log(applicantList);
+}();
