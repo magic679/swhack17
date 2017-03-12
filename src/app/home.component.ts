@@ -5,6 +5,7 @@ import { GitHubService } from './github.service';
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import { Observable } from 'rxjs/observable';
 import { Applicant } from './applicant.model';
+import { DataService } from './data.service';
 
 @Component({
   selector: 'home',
@@ -21,26 +22,36 @@ export class HomeComponent {
         gitHubResponse: [],
         sortableStats: []
         };
-  responseData: Array<any> = [];
-  apiEndPoint = 'SERVER_URL';
-  constructor(private github: GitHubService, private http: Http){
+  responseData: Array<any> = ["1"];
+  count = 0;
+  constructor(private github: GitHubService, private http: Http, private dataService: DataService){
       console.log("App Component is functioning")
   }
-  testing() {
-      let count = 0;
-      this.github.query(this.applicant.gitHubAccount, count).subscribe(data => {
+  onSubmit() {
+    this.github.query(this.applicant.gitHubAccount, this.count).subscribe(data => {
           if (data){
               for (let d of data){
                   this.applicant.gitHubResponse.push(d);
+              }
+              console.log(this.applicant.gitHubResponse);
+              if (data.length != 0){
+                  this.count++;
+                  this.onSubmit()
+              }
+              if (data.length == 0){
+                  this.saveResults();
               }
           }
           else {
               console.log("ERROR");
           }
-      });
+    });
   }
-  
-  onSubmit(){
+  saveResults(){
+      this.applicant.gitHubResponse = [];
+      this.count = 0;
+      this.dataService.applicantList.push(this.applicant);
+      console.log("The applicant list so far is " + this.dataService.applicantList);
   }
 
 }
