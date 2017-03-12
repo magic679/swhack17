@@ -6,28 +6,17 @@
 
 <header class="am-topbar am-topbar-inverse admin-header">
   <div class="am-topbar-brand">
-    <strong>XXXXXX</strong>
-    <small>XXXXXXXXXXXXX</small>
+    <strong>Welcome, Olivia</strong>
   </div>
 
-  <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only"
-          data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span
-    class="am-icon-bars"></span></button>
-
   <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
-
     <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
       <li><a><span class="am-icon-envelope-o"></span> Message <span
         class="am-badge am-badge-warning">5</span></a></li>
       <li class="am-dropdown" data-am-dropdown>
         <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
-          <span class="am-icon-users"></span> administritor <span class="am-icon-caret-down"></span>
+          <span class="am-icon-users"></span> administrator <span class="am-icon-caret-down"></span>
         </a>
-        <ul class="am-dropdown-content">
-          <li><a href="#"><span class="am-icon-user"></span> xxxx</a></li>
-          <li><a href="#"><span class="am-icon-cog"></span> xxxxx</a></li>
-          <li><a href="#"><span class="am-icon-power-off"></span> xxxxx</a></li>
-        </ul>
       </li>
       <li class="am-hide-sm-only"><a href="javascript:;" id="admin-fullscreen"><span class="am-icon-arrows-alt"></span>
         <span class="admin-fullText">Full Screen</span></a></li>
@@ -41,8 +30,9 @@
       <ul class="am-list admin-sidebar-list">
         <li><a routerLink="/" routerLinkActive="active"><span class="am-icon-home"></span> Home</a></li>
         <li class="admin-parent">
-          <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-file"></span> Applicants <span
-            class="am-icon-angle-right am-fr am-margin-right"></span></a>
+          <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-file"></span> Applicants
+            <span
+              class="am-icon-angle-right am-fr am-margin-right"></span></a>
           <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
             <li><a class="am-cf"><span class="am-icon-check"></span> Bar Graphs</a></li>
             <li><a><span class="am-icon-check"></span> Frequency Distributions</a>
@@ -53,7 +43,7 @@
           </ul>
         </li>
         <li><a><span class="am-icon-table"></span> Users </a></li>
-        <li><a><span class="am-icon-check"></span> Atributes </a></li>
+        <li><a><span class="am-icon-check"></span> Attributes </a></li>
       </ul>
 
       <div class="am-panel am-panel-default admin-sidebar-panel">
@@ -88,8 +78,7 @@
               <td>{{a.firstName}} {{a.lastName}}</td>
               <td>{{a.gitHubAccount}}</td>
               <td>{{a.emailAddress}}</td>
-              <td>
-              </td>
+              <td></td>
             </tr>
             </tbody>
           </table>
@@ -103,4 +92,4 @@
 <script src="assets/js/amazeui.ie8polyfill.min.js"></script>
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/amazeui.min.js"></script>
-<script src="assets/js/app.js"></script>
+<script src="/assets/js/app.js"></script>
