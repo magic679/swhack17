@@ -21,26 +21,27 @@ export class HomeComponent {
         gitHubResponse: [],
         sortableStats: []
         };
-  responseData: Array<any> = [];
-  apiEndPoint = 'SERVER_URL';
+  responseData: Array<any> = ["1"];
+  count = 0;
   constructor(private github: GitHubService, private http: Http){
       console.log("App Component is functioning")
   }
-  testing() {
-      let count = 0;
-      this.github.query(this.applicant.gitHubAccount, count).subscribe(data => {
+  onSubmit() {
+    this.github.query(this.applicant.gitHubAccount, this.count).subscribe(data => {
           if (data){
               for (let d of data){
                   this.applicant.gitHubResponse.push(d);
+              }
+              console.log(this.applicant.gitHubResponse);
+              if (data.length != 0){
+                  this.count++;
+                  this.onSubmit()
               }
           }
           else {
               console.log("ERROR");
           }
-      });
-  }
-  
-  onSubmit(){
+    });
   }
 
 }

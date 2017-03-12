@@ -5,7 +5,7 @@
     <h1><b><i class="fa fa-dashboard"></i> Apply Below</b></h1>
   </header>
   <button (click)="testing()">Payload in console</button>
-  <form #f="ngForm" (ngSubmit)="testing()" style="text-align:center">
+  <form #f="ngForm" (ngSubmit)="onSubmit()" style="text-align:center">
     <table style="width:100%;">
         <tr>
             <h3> First Name  <input type="text" name="firstName" id='firstName' [(ngModel)]="applicant.firstName" required></h3>
