@@ -5,6 +5,7 @@ import { GitHubService } from './github.service';
 import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import { Observable } from 'rxjs/observable';
 import { Applicant } from './applicant.model';
+import { DataService } from './data.service';
 
 @Component({
   selector: 'home',
@@ -23,7 +24,7 @@ export class HomeComponent {
         };
   responseData: Array<any> = ["1"];
   count = 0;
-  constructor(private github: GitHubService, private http: Http){
+  constructor(private github: GitHubService, private http: Http, private dataService: DataService){
       console.log("App Component is functioning")
   }
   onSubmit() {
@@ -37,11 +38,20 @@ export class HomeComponent {
                   this.count++;
                   this.onSubmit()
               }
+              if (data.length == 0){
+                  this.saveResults();
+              }
           }
           else {
               console.log("ERROR");
           }
     });
+  }
+  saveResults(){
+      this.applicant.gitHubResponse = [];
+      this.count = 0;
+      this.dataService.applicantList.push(this.applicant);
+      console.log("The applicant list so far is " + this.dataService.applicantList);
   }
 
 }

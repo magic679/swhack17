@@ -9,6 +9,7 @@ import {RecruiterComponent} from './recruiter.component';
 
 import {GitHubService} from './github.service';
 import {DataStoreService} from './dataStore.service';
+import {DataService} from './data.service';
 
 import {Routes, RouterModule} from '@angular/router';
 
@@ -34,7 +35,8 @@ const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);
   providers: [
     appRoutingProviders,
     GitHubService,
-    DataStoreService
+    DataStoreService,
+    DataService
   ],
   bootstrap: [AppComponent]
 })
