@@ -15,10 +15,10 @@ import { DataService } from './data.service';
 export class HomeComponent {
 
   title = 'app works!';
-  applicant: Applicant = { firstName: "",
-        lastName: "",
-        emailAddress: "",
-        gitHubAccount: "",
+  applicant: Applicant = { firstName: '',
+        lastName: '',
+        emailAddress: '',
+        gitHubAccount: '',
         gitHubResponse: [],
         sortableStats: []
         };
@@ -50,12 +50,7 @@ export class HomeComponent {
   saveResults(){
       this.count = 0;
       this.dataService.applicantList.push(this.applicant);
-      console.log("The applicant list so far is " + this.dataService.applicantList);
-      this.applicant.gitHubResponse = [];
-      this.applicant.firstName = '';
-      this.applicant.lastName = '';
-      this.applicant.sortableStats = [];
-      this.applicant.gitHubAccount = '';
+      console.log(this.dataService.applicantList);
   }
 
 }
