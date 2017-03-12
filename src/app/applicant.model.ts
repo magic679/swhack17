@@ -3,5 +3,6 @@ export class Applicant{
     lastName: string;
     emailAddress: string;
     gitHubAccount: string;
-    resume: File;
+    gitHubResponse: Array<any>;
+    sortableStats: Array<any>;
 }
