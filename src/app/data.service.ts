@@ -9,7 +9,7 @@ import { Applicant } from './applicant.model';
 })
 export class DataService {
 	applicant = new Applicant;
-	applicantList: Array<Applicant> = [];
+	applicantList: Array<any> = [];
 	constructor(private http: Http) {
             console.log("Data Passing Service is running");
     }

@@ -1,14 +1,4 @@
-(function($) {
-  'use strict';
-
-  $(function() {
-    var $fullText = $('.admin-fullText');
-    $('#admin-fullscreen').on('click', function() {
-      $.AMUI.fullscreen.toggle();
-    });
-
-    $(document).on($.AMUI.fullscreen.raw.fullscreenchange, function() {
-      $fullText.text($.AMUI.fullscreen.isFullscreen ? 'Exit fullscreen' : 'Open fullscreen');
-    });
-  });
-})(jQuery);
+var hack = function(){
+    console.log('in jquery');
+    console.log(applicantList);
+}();

@@ -28,30 +28,33 @@ export class HomeComponent {
       console.log("App Component is functioning")
   }
   onSubmit() {
-    this.github.query(this.applicant.gitHubAccount, this.count).subscribe(data => {
-          if (data){
-              for (let d of data){
-                  this.applicant.gitHubResponse.push(d);
+      let datat = this.applicant;
+        this.github.query(this.applicant.gitHubAccount, this.count).subscribe(data => {
+              if (data){
+                  for (let d of data){
+                      this.applicant.gitHubResponse.push(d);
+                  }
+                  console.log(this.applicant.gitHubResponse);
+                  if (data.length != 0){
+                      this.count++;
+                      this.onSubmit();
+                  }
+                  if (data.length == 0){
+                      let clone = Object.assign({}, this.applicant);
+                      this.dataService.applicantList.push(clone);
+                      console.log(this.dataService.applicantList);
+                  }
               }
-              console.log(this.applicant.gitHubResponse);
-              if (data.length != 0){
-                  this.count++;
-                  this.onSubmit()
-              }
-              if (data.length == 0){
-                  this.saveResults();
-              }
-          }
-          else {
-              console.log("ERROR");
-          }
-    });
+              else {
+                  console.log("ERROR");
+              };
+        });
+
   }
-  saveResults(){
-      this.applicant.gitHubResponse = [];
+  saveResults(datat: Applicant){
+
       this.count = 0;
       this.dataService.applicantList.push(this.applicant);
-      console.log("The applicant list so far is " + this.dataService.applicantList);
+      console.log(this.dataService.applicantList);
   }
-
 }

@@ -20,5 +20,7 @@ export class RecruiterComponent {
   constructor(private githubService: GitHubService, private http: Http, private dataService: DataService){
       console.log("App Component is functioning");
   }
-  
+  reload(){
+      this.applicantList = this.dataService.applicantList;
+  }
 }

@@ -6,28 +6,17 @@
 
 <header class="am-topbar am-topbar-inverse admin-header">
   <div class="am-topbar-brand">
-    <strong>XXXXXX</strong>
-    <small>XXXXXXXXXXXXX</small>
+    <strong>Welcome, Olivia</strong>
   </div>
 
-  <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only"
-          data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span
-    class="am-icon-bars"></span></button>
-
   <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
-
     <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
-      <li><a><span class="am-icon-envelope-o"></span> Massage <span
+      <li><a><span class="am-icon-envelope-o"></span> Message <span
         class="am-badge am-badge-warning">5</span></a></li>
       <li class="am-dropdown" data-am-dropdown>
         <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
-          <span class="am-icon-users"></span> administritor <span class="am-icon-caret-down"></span>
+          <span class="am-icon-users"></span> administrator <span class="am-icon-caret-down"></span>
         </a>
-        <ul class="am-dropdown-content">
-          <li><a href="#"><span class="am-icon-user"></span> xxxx</a></li>
-          <li><a href="#"><span class="am-icon-cog"></span> xxxxx</a></li>
-          <li><a href="#"><span class="am-icon-power-off"></span> xxxxx</a></li>
-        </ul>
       </li>
       <li class="am-hide-sm-only"><a href="javascript:;" id="admin-fullscreen"><span class="am-icon-arrows-alt"></span>
         <span class="admin-fullText">Full Screen</span></a></li>
@@ -39,10 +28,11 @@
   <div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
     <div class="am-offcanvas-bar admin-offcanvas-bar">
       <ul class="am-list admin-sidebar-list">
-        <li><a href="admin-home.html"><span class="am-icon-home"></span> Home</a></li>
+        <li><a routerLink="/" routerLinkActive="active"><span class="am-icon-home"></span> Home</a></li>
         <li class="admin-parent">
-          <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-file"></span> Graphs <span
-            class="am-icon-angle-right am-fr am-margin-right"></span></a>
+          <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-file"></span> Applicants
+            <span
+              class="am-icon-angle-right am-fr am-margin-right"></span></a>
           <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
             <li><a class="am-cf"><span class="am-icon-check"></span> Bar Graphs</a></li>
             <li><a><span class="am-icon-check"></span> Frequency Distributions</a>
@@ -53,7 +43,7 @@
           </ul>
         </li>
         <li><a><span class="am-icon-table"></span> Users </a></li>
-        <li><a><span class="am-icon-check"></span> Atributes </a></li>
+        <li><a><span class="am-icon-check"></span> Attributes </a></li>
       </ul>
 
       <div class="am-panel am-panel-default admin-sidebar-panel">
@@ -67,25 +57,11 @@
 
   <div class="admin-content" style="margin-left:300px;">
     <div class="admin-content-body">
-      <div class="am-cf am-padding">
-        <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">Home</strong> /
-          <small>Whole view of data</small>
-        </div>
-      </div>
-
-      <ul class="am-avg-sm-1 am-avg-md-4 am-margin am-padding am-text-center admin-content-list ">
-        <li><a href="#" class="am-text-success"><span class="am-icon-btn am-icon-file-text"></span><br/>New resume<br/>2300</a>
-        </li>
-        <li><a href="#" class="am-text-warning"><span class="am-icon-btn am-icon-briefcase"></span><br/>successful audit<br/>308</a>
-        </li>
-        <li><a href="#" class="am-text-danger"><span class="am-icon-btn am-icon-recycle"></span><br/>Visit yesterday
-          <br/>80082</a></li>
-        <li><a href="#" class="am-text-secondary"><span class="am-icon-btn am-icon-user-md"></span><br/>onlie
-          people<br/>3000</a></li>
-      </ul>
+      <div class="am-cf am-padding"></div>
 
       <div class="am-g">
         <div class="am-u-sm-12">
+          <button (click)="reload()">Click here to reload applicants</button>
           <table class="am-table am-table-bd am-table-striped admin-content-table">
             <thead>
             <tr>
@@ -100,25 +76,14 @@
             <tr *ngFor="let a of applicantList">
               <td>1</td>
               <td>{{a.firstName}} {{a.lastName}}</td>
-              <td><a href="#">Business management</a></td>
-              <td>
-              </td>
+              <td>{{a.gitHubAccount}}</td>
+              <td>{{a.emailAddress}}</td>
+              <td></td>
             </tr>
             </tbody>
           </table>
         </div>
       </div>
-
-      <footer class="admin-content-footer">
-        <hr>
-        <p class="am-padding-left">© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
-      </footer>
     </div>
   </div>
 </div>
-
-<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
-<script src="assets/js/amazeui.ie8polyfill.min.js"></script>
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/amazeui.min.js"></script>
-<script src="assets/js/app.js"></script>
