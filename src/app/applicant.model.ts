@@ -4,5 +4,6 @@ export class Applicant{
     emailAddress: string;
     gitHubAccount: string;
     gitHubResponse: Array<any>;
-    sortableStats: Array<any>;
+    repoList: Array<any>;
+    metaDataList: Array<any>
 }

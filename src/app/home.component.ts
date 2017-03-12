@@ -20,7 +20,8 @@ export class HomeComponent {
         emailAddress: "",
         gitHubAccount: "",
         gitHubResponse: [],
-        sortableStats: []
+        repoList: [],
+        metaDataList: []
         };
   responseData: Array<any> = ["1"];
   count = 0;
@@ -28,27 +29,55 @@ export class HomeComponent {
       console.log("App Component is functioning")
   }
   onSubmit() {
-      let datat = this.applicant;
-        this.github.query(this.applicant.gitHubAccount, this.count).subscribe(data => {
-              if (data){
-                  for (let d of data){
-                      this.applicant.gitHubResponse.push(d);
-                  }
-                  console.log(this.applicant.gitHubResponse);
-                  if (data.length != 0){
-                      this.count++;
-                      this.onSubmit();
-                  }
-                  if (data.length == 0){
-                      let clone = Object.assign({}, this.applicant);
-                      this.dataService.applicantList.push(clone);
-                      console.log(this.dataService.applicantList);
-                  }
+    this.github.eventsQuery(this.applicant.gitHubAccount, this.count).subscribe(data => {
+          if (data){
+              for (let d of data){
+                  this.applicant.gitHubResponse.push(d);
               }
-              else {
-                  console.log("ERROR");
-              };
-        });
+              console.log(this.applicant.gitHubResponse);
+              if (data.length != 0){
+                  this.count++;
+                  this.onSubmit();
+              }
+              if (data.length == 0){
+                  let clone = Object.assign({}, this.applicant);
+                  this.dataService.applicantList.push(clone);
+                  console.log(this.dataService.applicantList);
+              }
+          }
+          else {
+              console.log("ERROR");
+          }
+    });
+    this.github.repoQuery(this.applicant.gitHubAccount).subscribe(data => {
+        if (data){
+            for (let d of data){
+                this.applicant.repoList.push(d);
+            }
+            console.log(this.applicant.repoList);
+            let clone1 = Object.assign({}, this.applicant);
+            this.dataService.applicantList.push(clone1);
+            console.log(this.dataService.applicantList);
+        }
+        else{
+            console.log("RepoQuery Error");
+        }
+    });
+    this.github.userMetaQuery(this.applicant.gitHubAccount).subscribe(data => {
+        if (data){
+            for (let d of data){
+                this.applicant.metaDataList.push(d);
+            }
+            console.log(this.applicant.metaDataList);
+            let clone2 = Object.assign({}, this.applicant);
+            this.dataService.applicantList.push(clone2);
+            console.log(this.dataService.applicantList);
+        }
+        else{
+            console.log("RepoQuery Error");
+        }
+    });
+
 
   }
   saveResults(datat: Applicant){
