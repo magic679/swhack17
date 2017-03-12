@@ -24,7 +24,7 @@
   </div>
 </header>
 
-< class="am-cf admin-main">
+<class="am-cf admin-main">
 <div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
   <div class="am-offcanvas-bar admin-offcanvas-bar">
     <ul class="am-list admin-sidebar-list">
@@ -78,7 +78,13 @@
             <td>{{a.firstName}} {{a.lastName}}</td>
             <td>{{a.gitHubAccount}}</td>
             <td>{{a.emailAddress}}</td>
-            <td></td>
+            <td id='graphTd'>
+                <script>
+                var newgraph = recruiterGraphs.initialize('graphTd');
+                newgraph.dataBuilder({{a.gitHubAccount}}, [['repos', 'name'], ['repos', 'stargazers_count']]);
+                newgraph.generateBar();
+                </script>
+            </td>
           </tr>
           </tbody>
         </table>

@@ -7,6 +7,8 @@ import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import { Observable } from 'rxjs/observable';
 import { Applicant } from './applicant.model';
 
+declare var recruiterGraphs:any;
+
 @Component({
   selector: 'recruiter',
   templateUrl: './admin-home.html',
@@ -17,10 +19,13 @@ export class RecruiterComponent {
   apiEndPoint = 'SERVER_URL';
   applicantList: Array<Applicant> = [];
 
+
   constructor(private githubService: GitHubService, private http: Http, private dataService: DataService){
       console.log("App Component is functioning");
+
   }
   reload(){
       this.applicantList = this.dataService.applicantList;
+
   }
 }

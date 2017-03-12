@@ -1,7 +1,7 @@
 (function () {
   var applicantData;
 
-  function set(newData) {
+  export function set(newData) {
     applicantData = newData;
   }
 
