@@ -1,4 +1,10 @@
-var hack = function(){
-    console.log('in jquery');
-    console.log(applicantList);
+var hack = function () {
+  function print() {
+    var t = $('#jquery-applicantList');
+    console.log(t.val());
+  }
+
+  return {
+    print: print
+  }
 }();
