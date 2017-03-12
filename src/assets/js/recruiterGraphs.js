@@ -1,6 +1,12 @@
-var recruiterGraphs = {
+/**
+ * Main object to be initialized
+ * @type {{initialize: Window.recruiterGraphs.initialize, getSize: Window.recruiterGraphs.getSize, parseDataField: Window.recruiterGraphs.parseDataField, dataBuilder: Window.recruiterGraphs.dataBuilder, generateBar: Window.recruiterGraphs.generateBar, generatePie: Window.recruiterGraphs.generatePie, generateScatter: Window.recruiterGraphs.generateScatter, removeGraph: Window.recruiterGraphs.removeGraph, home: {}, data: null, built: Array}}
+ */
+window.recruiterGraphs = {
     /**
-     * Set object so that it works in an are of  the screen
+     * Initialize an object by attaching its copy to a "selector"
+     * @param selector String, should coincide with an element ID or something usable by
+     * @returns {recruiterGraphs}
      */
     initialize: function (selector) {
         var newGraph = Object.create(recruiterGraphs);
@@ -14,12 +20,18 @@ var recruiterGraphs = {
         }
         return newGraph;
     },
+    /**
+     * Gets the size of the containing element for use by the graph
+     */
     getSize: function(){
         this.home.height = this.home.target.offsetHeight;
         this.home.width = this.home.target.offsetWidth;
     },
     /**
-     * Select the desired data field from a json object to display
+     * Parses json for specific information to be used by the bar graph
+     * @param json The Github data of a user
+     * @param target The attribute that you want from the json to be mapped
+     * @returns {*}
      */
     parseDataField: function (json, target) {
         var arr = [];
@@ -60,6 +72,11 @@ var recruiterGraphs = {
         }
 
     },
+    /**
+     * Generate a bar graph AFTER running dataBuilder
+     * @param atts
+     * @param built
+     */
     generateBar: function (atts, built) {
         var original = this;
         var svg = d3.select(original.home.target).append('svg').attr('width', original.home.width).attr('height', original.home.height);
@@ -71,55 +88,7 @@ var recruiterGraphs = {
             .attr('height', function(d){var out = ((d[Object.keys(d)[0]]*10)+1); return out})
             .attr('fill', "#666");
     },
-    pieData: function(json, label, value){
-        var data = [];
-        json.forEach(function(item){
-            var obj = {};
-            obj[label]= item[label];
-            obj[value]= item[value];
-            data.push(obj)
-        });
-        // return data;
-        this.generatePie(data);
-    },
-    /**
-     *
-     * @param json
-     * @param label
-     * @param relation
-     * @param value
-     */
-    generatePie: function (data) {
-
-        // var data = this.pieData(json, label, value);
-        var w = this.home.width;
-        var h = this.home.height;
-        var r = Math.min(w, h)/2;
-
-        var color = d3.scaleOrdinal(d3.schemeCategory20c);
-
-
-        var svg = d3.select(this.home.target)
-            .append("svg")
-            .attr("width", w)
-            .attr("height", h)
-            .append("g")
-            .attr('transform', 'translate(' + (w / 2) +  ',' + (h / 2) + ')');
-
-        var arc = d3.arc()
-            .innerRadius(0)
-            .outerRadius(r);
-
-        var pie = d3.pie().value(function(d){return d.size;}).sort(null);
-
-        var path = svg.selectAll('path')
-            .data(pie(data))
-            .enter()
-            .append('path')
-            .attr('d', arc)
-            .attr('fill', function(d) {
-                return color(d.data.name);
-            });
+    generatePie: function (atts, built) {
     },
     generateScatter: function (atts, built) {
     },
